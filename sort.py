@@ -24,10 +24,6 @@ import matplotlib
 import warnings
 from dotenv import dotenv_values
 config = dotenv_values(".env")
-FISH_COUNTER_FIRST_Y = 480  # y position of first fish counter line
-FISH_COUNTER_Y_INCREMENT = 20  # y increment to next fish counter line
-
-CAM_ADDRESS = config["CAMERA_URL"]
 max_distance_between_points = 100
 
 MAX_AGE = int(config["MAX_AGE"])
