@@ -21,7 +21,8 @@ def getSortCoordinates(detections):
         det_type = label
         x, y, w, h = detection
         c = int(float(confidence))
-        dnum = det_type_to_number_mapping[det_type]
+        # map your own
+        # dnum = det_type_to_number_mapping[det_type]
         xmin, ymin, xmax, ymax, c = getSorted(float(x), float(y), float(w), float(h), c)
         object_list.append([xmin, ymin, xmax, ymax, c, dnum])
 
