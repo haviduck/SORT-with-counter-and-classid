@@ -1,7 +1,7 @@
 from collections import defaultdict, deque
 
 
-class object:
+class DetObject:
     def __init__(self):
         self.track = deque(maxlen=30)
         self.counted = False
