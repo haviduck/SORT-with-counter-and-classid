@@ -1,6 +1,11 @@
 # this is so not an example.. but you hopefully get the gist
 # when you get your detections, do your stuff.
 #
+import tracker.py
+import sort.py
+sorter = ort()
+history_tracker = ObjectTracker()
+loctracker = 
     def getSortCoordinates(self, detections):
         object_list = []
         linep1 = (pt1x, pt1y)
