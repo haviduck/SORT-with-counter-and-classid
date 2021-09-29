@@ -12,7 +12,7 @@ history_tracker = ObjectTracker()
 
 
 
-def getSortCoordinates(self, detections):
+def getSortCoordinates(detections):
     object_list = []
     linep1 = (pt1x, pt1y)
     linep2 = (pt2x, pt2y)
@@ -52,3 +52,13 @@ def getSortCoordinates(self, detections):
                 cv2.circle(img, cords, 2, color, circ)
             else:
                 cv2.rectangle(img, pt1, pt2, color, 1)
+                
+                
+                
+def lotsofdetectionstuff():
+    videothingie = cv2.videothingie()
+    while videothingie isOpened:
+        #lots of detection stuff
+        image = getSortCoordinates(detections)
+        
+    #and so on
