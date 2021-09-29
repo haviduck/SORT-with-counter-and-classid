@@ -7,7 +7,8 @@ import tracker
 sorter = sort()
 history_tracker = ObjectTracker()
 
-# yeah i yanked this out of a project. it has counting by tripline counting so added that. it might have remnants of other stuff so sorry bout that but then again not sorry
+# yeah i yanked this out of a project. had to rename etc so probably bugged. i do mapping for object id to color etc, but thats in a utils file and im having an argument with that file at the moment.
+# it has counting by tripline counting so added that. it might have remnants of other stuff so sorry bout that but then again not sorry
 
 
 
