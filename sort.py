@@ -32,17 +32,6 @@ max_distance_between_points = 100
 
 MAX_AGE = int(config["MAX_AGE"])
 MIN_HITS = int(config["MIN_HITS"])
-# warnings.filterwarnings("ignore")
-# from numba import jit
-# matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-
-# from skimage import io
-# from sklearn.utils.linear_assignment_ import linear_assignment
-import glob
-import time
-import argparse
 from filterpy.kalman import KalmanFilter
 
 np.random.seed(0)
