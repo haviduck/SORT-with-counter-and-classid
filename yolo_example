@@ -1,1 +1,26 @@
-#coming in an hour or so, but im drunk so who knows
+# this is so not an example.. but you hopefully get the gist
+# when you get your detections, do your stuff.
+#
+    def getSortCoordinates(self, detections):
+        object_list = []
+        linep1 = (pt1x, pt1y)
+        linep2 = (pt2x, pt2y)
+
+        for label, confidence, detection in detections:
+            det_type = label
+            x, y, w, h = detection
+            c = int(float(confidence))
+            dnum = det_type_to_number_mapping[det_type]
+            xmin, ymin, xmax, ymax, c = getSorted(float(x), float(y), float(w), float(h), c)
+            object_list.append([xmin, ymin, xmax, ymax, c, dnum])
+
+
+        np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
+        np1 = np.array(object_list)
+        trackers = self.salm_sorter.update(np1)
+        for d in trackers:
+            d = np.array(d, dtype=np.float32)
+            pt1 = (d[0], d[1])
+            pt2 = (d[2], d[3])
+            # from here on out yuou know..
+            
