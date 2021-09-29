@@ -1,6 +1,9 @@
 SORT
 =====
 
+wait wait wait.. so hear me out. sort is awesome. but we need classid and some other stuff. so i give you class id and some other stuff. BUT! when ran it needs some ... other stuff. so im definitely gonna do an example and all that. 
+
+
 A simple online and realtime tracking algorithm for 2D multiple object tracking in video sequences.
 See an example [video here](https://alex.bewley.ai/misc/SORT-MOT17-06-FRCNN.webm).
 
