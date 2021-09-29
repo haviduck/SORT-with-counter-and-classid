@@ -72,12 +72,11 @@ def iou(bb_test, bb_gt):
     w = np.maximum(0.0, xx2 - xx1)
     h = np.maximum(0.0, yy2 - yy1)
     wh = w * h
-    o = wh / (
+    return wh / (
         (bb_test[2] - bb_test[0]) * (bb_test[3] - bb_test[1])
         + (bb_gt[2] - bb_gt[0]) * (bb_gt[3] - bb_gt[1])
         - wh
     )
-    return o
 
 
 def convert_bbox_to_z(bbox):
@@ -102,7 +101,7 @@ def convert_x_to_bbox(x, score=None):
     """
     w = np.sqrt(x[2] * x[3])
     h = x[2] / w
-    if score == None:
+    if score is None:
         return np.array(
             [x[0] - w / 2.0, x[1] - h / 2.0, x[0] + w / 2.0, x[1] + h / 2.0]
         ).reshape((1, 4))
@@ -208,14 +207,13 @@ def associate_detections_to_trackers(detections, trackers, iou_threshold=0.3):
             iou_matrix[d, t] = iou(det, trk)
     matched_indices = linear_assignment(-iou_matrix)
 
-    unmatched_detections = []
-    for d, det in enumerate(detections):
-        if d not in matched_indices[:, 0]:
-            unmatched_detections.append(d)
-    unmatched_trackers = []
-    for t, trk in enumerate(trackers):
-        if t not in matched_indices[:, 1]:
-            unmatched_trackers.append(t)
+    unmatched_detections = [
+        d for d, det in enumerate(detections) if d not in matched_indices[:, 0]
+    ]
+
+    unmatched_trackers = [
+        t for t, trk in enumerate(trackers) if t not in matched_indices[:, 1]
+    ]
 
     # filter out matched with low IOU
     matches = []
@@ -225,7 +223,7 @@ def associate_detections_to_trackers(detections, trackers, iou_threshold=0.3):
             unmatched_trackers.append(m[1])
         else:
             matches.append(m.reshape(1, 2))
-    if len(matches) == 0:
+    if not matches:
         matches = np.empty((0, 2), dtype=int)
     else:
         matches = np.concatenate(matches, axis=0)
@@ -259,9 +257,7 @@ class Sort(object):
         for t, trk in enumerate(self.trackers):
             if t not in unmatched_trks:
                 d = matched[np.where(matched[:, 1] == t)[0], 0]
-                if len(d) is 0:
-                    pass
-                else:
+                if len(d) is not 0:
                     trk.update(dets[d, :][0])
         for i in unmatched_dets:
             trk = KalmanBoxTrackerWithDetType(dets[i, :])
@@ -280,6 +276,6 @@ class Sort(object):
             i -= 1
             if trk.time_since_update > self.max_age:
                 self.trackers.pop(i)
-        if len(ret) > 0:
+        if ret:
             return np.concatenate(ret)
         return np.empty((0, 5))
